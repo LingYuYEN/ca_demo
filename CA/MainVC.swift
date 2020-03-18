@@ -32,17 +32,16 @@ class MainVC: UIViewController {
         if segue.identifier == "ContainerSegue" {
             pageViewController = segue.destination as? PageViewController
             pageViewController.pageViewControllerDelegate = self
-            pageViewController.fetchPhoneNumberDelegate = self
             pageViewController.mainViewController = self
         }
     }
     
     
     @IBAction func callBtnClick(_ sender: Any) {
-        print(self.phoneNumber ?? "no value")
-        makePhoneCall(phoneNumber: self.phoneNumber ?? "0926004286")
+        makePhoneCall(phoneNumber: "0926004286")
     }
     
+    // 打電話
     func makePhoneCall(phoneNumber: String) {
         if let phoneURL = NSURL(string: ("tel://" + phoneNumber)) {
             UIApplication.shared.open(phoneURL as URL, options: [:], completionHandler: nil)
@@ -58,13 +57,4 @@ extension MainVC: PageVCDelegate {
     func pageViewController(_ pageViewController: PageViewController, didUpdatePageIndex pageIndex: Int) {
         self.pageControl.currentPage = pageIndex
     }
-}
-
-extension MainVC: FetchPhoneNumberDelegate {
-    func fetchPhoneNumber() -> String {
-        return "0926004286"
-    }
-    
-    
-    
 }

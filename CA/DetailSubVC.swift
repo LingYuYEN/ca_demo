@@ -55,6 +55,7 @@ class DetailSubVC: UIViewController {
     var phoneStr = ""
     var nameStr = ""
     var largeTitleStr = ""
+    var visitTime = "2020.03.19 17:30:00"
     var originalDigitalNumber = 0
     var myDigitalNumber = 0
     var waitNumberNumber = 0
@@ -83,6 +84,16 @@ class DetailSubVC: UIViewController {
     }
 
     func setUI() {
+        let dateFormatter = DateFormatter()     // 建立日期格式化器
+        let calendar = Calendar.current         // 取得本地日曆
+
+        dateFormatter.dateFormat = "YYYY.MM.dd HH:mm:ss"    // 時間格式
+        let vivitDate = dateFormatter.date(from: visitTime) // 自訂 String 時間格式需與上一行吻合
+        let visitDateHourStr = calendar.component(.hour, from: vivitDate!)  // 提取 hour
+        let visitDateMinuteStr = calendar.component(.minute, from: vivitDate!)  // 提取 munute
+        
+        // 與現在時間時間相差
+        let dateBetween = Date().daysBetweenDate(toDate: vivitDate!)
         
         waitNumberNumber = myDigitalNumber - originalDigitalNumber
         largeTitleStr = waitNumberNumber < 6 ? "請儘快抵達 以免過號" : "以下為您專屬預約資訊"
@@ -102,14 +113,14 @@ class DetailSubVC: UIViewController {
         originNumberLabel.attributedText = .setAttributedString(string: "目前看診號", wordSpace: .onePNine)
         myNumberLabel.attributedText = .setAttributedString(string: "我預約診號", wordSpace: .onePNine)
         dateLabel.attributedText = .setAttributedString(string: "今日下午", wordSpace: .onePNine)
-        timeLabel.attributedText = .setAttributedString(string: "17:30", wordSpace: .onePNine)
+        timeLabel.attributedText = .setAttributedString(string: "\(visitDateHourStr):\(visitDateMinuteStr)", wordSpace: .onePNine)
         reciprocalLabel.attributedText = .setAttributedString(string: "等待時間倒數", wordSpace: .onePNine)
         timeUnitsLabel.attributedText = .setAttributedString(string: "分鐘", wordSpace: .onePNine)
         waitCountLabel.attributedText = .setAttributedString(string: "等待人數預計", wordSpace: .onePNine)
         
         
         var formatStr = String(format: "%02ld", reciprocalDigatalNumber)
-        reciprocalDigatalLabel.attributedText = .setAttributedString(string: formatStr, wordSpace: .fivePZero)
+        reciprocalDigatalLabel.attributedText = .setAttributedString(string: "\(dateBetween.2)", wordSpace: .fivePZero)
         
         formatStr = String(format: "%05ld", originalDigitalNumber)
         originalDigitalLabel.attributedText = .setDiffrentColorAttrStr(string: formatStr, wordSpace: .fourPZero, color: .lightGray, interval: originalDigitalNumber)

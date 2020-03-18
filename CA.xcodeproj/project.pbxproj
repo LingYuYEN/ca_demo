@@ -25,6 +25,7 @@
 		1329E2C6241F7E8E0022D9E3 /* NotoSansTC-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1329E2C3241F7E8E0022D9E3 /* NotoSansTC-Black.otf */; };
 		1329E2C7241F7E8E0022D9E3 /* NotoSansTC-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1329E2C4241F7E8E0022D9E3 /* NotoSansTC-Bold.otf */; };
 		1329E2C8241F7E8E0022D9E3 /* NotoSansTC-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1329E2C5241F7E8E0022D9E3 /* NotoSansTC-Medium.otf */; };
+		1329E2CA2421E4FD0022D9E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1329E2C92421E4FD0022D9E3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		1329E2C3241F7E8E0022D9E3 /* NotoSansTC-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansTC-Black.otf"; path = "../../../DemoCOC/Resources/Fonts/NotoSansTC-Black.otf"; sourceTree = "<group>"; };
 		1329E2C4241F7E8E0022D9E3 /* NotoSansTC-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansTC-Bold.otf"; path = "../../../DemoCOC/Resources/Fonts/NotoSansTC-Bold.otf"; sourceTree = "<group>"; };
 		1329E2C5241F7E8E0022D9E3 /* NotoSansTC-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansTC-Medium.otf"; path = "../../../DemoCOC/Resources/Fonts/NotoSansTC-Medium.otf"; sourceTree = "<group>"; };
+		1329E2C92421E4FD0022D9E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				1315DD75241F4D2300FC7FA3 /* Fonts */,
 				1315DD60241F190700FC7FA3 /* LaunchScreen.storyboard */,
 				1315DD63241F190700FC7FA3 /* Info.plist */,
+				1329E2C92421E4FD0022D9E3 /* GoogleService-Info.plist */,
 			);
 			path = CA;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				1315DD6E241F28F100FC7FA3 /* DetailSubVC.xib in Resources */,
 				1315DD85241F616200FC7FA3 /* D-DIN.otf in Resources */,
 				1315DD87241F625C00FC7FA3 /* D-DIN-Bold.otf in Resources */,
+				1329E2CA2421E4FD0022D9E3 /* GoogleService-Info.plist in Resources */,
 				1329E2C8241F7E8E0022D9E3 /* NotoSansTC-Medium.otf in Resources */,
 				1315DD5D241F190600FC7FA3 /* Main.storyboard in Resources */,
 			);
@@ -347,7 +351,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Louis.CA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conquers.CA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -365,7 +369,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Louis.CA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conquers.CA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

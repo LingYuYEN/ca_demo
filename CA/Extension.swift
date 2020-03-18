@@ -127,3 +127,32 @@ extension UIColor {
         }
     }
 }
+
+extension String {
+    /// 轉換日期格式
+    func dateFormatter(sourceDateStr: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
+        let date = dateFormatter.date(from: sourceDateStr)
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let dateString = dateFormatter.string(from: date!)
+        return dateString
+    }
+    
+    // MARK: e-Mail檢查
+    func isValidEmail(testStr:String) -> Bool {
+        print("validate emilId: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: testStr)
+        return result
+    }
+}
+
+extension Date {
+    /// 預約日期 - 現在日期
+    func daysBetweenDate(toDate: Date) -> (Int, Int, Int) {
+        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: self, to: toDate)
+        return (components.day ?? 0, components.hour ?? 0, components.minute ?? 0)
+    }
+}
