@@ -97,7 +97,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tH2-tM-OHu">
-                    <rect key="frame" x="20" y="201.33333333333337" width="374" height="273"/>
+                    <rect key="frame" x="20" y="211.33333333333337" width="374" height="273"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bob-gT-gf9" userLabel="Separator View A">
                             <rect key="frame" x="27" y="51.666666666666657" width="320" height="0.6666666666666643"/>
@@ -224,7 +224,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ion-F7-b8T">
-                    <rect key="frame" x="20" y="490.99999999999994" width="374" height="93.333333333333314"/>
+                    <rect key="frame" x="20" y="500.99999999999994" width="374" height="93.333333333333314"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttN-Il-USI">
                             <rect key="frame" x="27" y="32.333333333333371" width="75" height="29"/>
@@ -301,7 +301,7 @@
                 <constraint firstItem="tH2-tM-OHu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oXe-j5-Mtk"/>
                 <constraint firstItem="YpL-7W-Ros" firstAttribute="trailing" secondItem="Bob-gT-gf9" secondAttribute="trailing" id="sLR-U6-dRy"/>
                 <constraint firstItem="LQt-TM-RAn" firstAttribute="top" secondItem="Kym-lc-PrY" secondAttribute="bottom" constant="1" id="vO5-d8-eX3"/>
-                <constraint firstItem="tH2-tM-OHu" firstAttribute="top" secondItem="LQt-TM-RAn" secondAttribute="bottom" constant="11.67" id="wPx-wC-VfZ"/>
+                <constraint firstItem="tH2-tM-OHu" firstAttribute="top" secondItem="LQt-TM-RAn" secondAttribute="bottom" constant="21.670000000000002" id="wPx-wC-VfZ"/>
                 <constraint firstItem="ttN-Il-USI" firstAttribute="height" secondItem="ydZ-Lg-KTU" secondAttribute="height" multiplier="0.0394022" id="xYx-mW-KCn"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="152.44565217391306"/>
