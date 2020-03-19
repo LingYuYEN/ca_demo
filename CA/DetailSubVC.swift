@@ -55,10 +55,10 @@ class DetailSubVC: UIViewController {
     var phoneStr = ""
     var nameStr = ""
     var largeTitleStr = ""
-    var visitTime = "2020.03.19 17:30:00"
+    var visitTime = "2020.03.19 16:20:00"
     var originalDigitalNumber = 0
     var myDigitalNumber = 0
-    var waitNumberNumber = 0
+    var waitNumber = 0
     var reciprocalDigatalNumber = 0
     
     override func viewDidLoad() {
@@ -79,24 +79,21 @@ class DetailSubVC: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateReciprocalTime()
+    }
+    
     override func viewWillLayoutSubviews() {
         self.cancelBtn.layer.cornerRadius = self.cancelBtn.frame.size.height / 2
     }
 
     func setUI() {
-        let dateFormatter = DateFormatter()     // 建立日期格式化器
-        let calendar = Calendar.current         // 取得本地日曆
-
-        dateFormatter.dateFormat = "YYYY.MM.dd HH:mm:ss"    // 時間格式
-        let vivitDate = dateFormatter.date(from: visitTime) // 自訂 String 時間格式需與上一行吻合
-        let visitDateHourStr = calendar.component(.hour, from: vivitDate!)  // 提取 hour
-        let visitDateMinuteStr = calendar.component(.minute, from: vivitDate!)  // 提取 munute
         
-        // 與現在時間時間相差
-        let dateBetween = Date().daysBetweenDate(toDate: vivitDate!)
+        updateReciprocalTime()
         
-        waitNumberNumber = myDigitalNumber - originalDigitalNumber
-        largeTitleStr = waitNumberNumber < 6 ? "請儘快抵達 以免過號" : "以下為您專屬預約資訊"
+        waitNumber = myDigitalNumber - originalDigitalNumber
+        largeTitleStr = waitNumber < 6 ? "請儘快抵達 以免過號" : "以下為您專屬預約資訊"
+        
         messageContView.layer.cornerRadius = 14 * screenScaleWidth
         waitCountContView.layer.cornerRadius = 14 * screenScaleWidth
         
@@ -113,25 +110,21 @@ class DetailSubVC: UIViewController {
         originNumberLabel.attributedText = .setAttributedString(string: "目前看診號", wordSpace: .onePNine)
         myNumberLabel.attributedText = .setAttributedString(string: "我預約診號", wordSpace: .onePNine)
         dateLabel.attributedText = .setAttributedString(string: "今日下午", wordSpace: .onePNine)
-        timeLabel.attributedText = .setAttributedString(string: "\(visitDateHourStr):\(visitDateMinuteStr)", wordSpace: .onePNine)
+        
         reciprocalLabel.attributedText = .setAttributedString(string: "等待時間倒數", wordSpace: .onePNine)
-        timeUnitsLabel.attributedText = .setAttributedString(string: "分鐘", wordSpace: .onePNine)
         waitCountLabel.attributedText = .setAttributedString(string: "等待人數預計", wordSpace: .onePNine)
         
         
-        var formatStr = String(format: "%02ld", reciprocalDigatalNumber)
-        reciprocalDigatalLabel.attributedText = .setAttributedString(string: "\(dateBetween.2)", wordSpace: .fivePZero)
-        
-        formatStr = String(format: "%05ld", originalDigitalNumber)
+        var formatStr = String(format: "%05ld", originalDigitalNumber)
         originalDigitalLabel.attributedText = .setDiffrentColorAttrStr(string: formatStr, wordSpace: .fourPZero, color: .lightGray, interval: originalDigitalNumber)
         
         formatStr = String(format: "%05ld", myDigitalNumber)
         myDigitalLabel.attributedText = .setDiffrentColorAttrStr(string: formatStr, wordSpace: .fourPZero, color: .lightGray, interval: myDigitalNumber)
         
-        formatStr = String(format: "%03ld", waitNumberNumber)
-        waitNumberLabel.attributedText = .setDiffrentColorAttrStr(string: formatStr, wordSpace: .twoPTwo, color: .lightGray, interval: waitNumberNumber)
+        formatStr = String(format: "%03ld", waitNumber)
+        waitNumberLabel.attributedText = .setDiffrentColorAttrStr(string: formatStr, wordSpace: .twoPTwo, color: .lightGray, interval: waitNumber)
         
-        switch waitNumberNumber {
+        switch waitNumber {
         case 0 ... 5:
             setGradientView(fromColor: UIColor.set(red: 201, green: 60, blue: 60).withAlphaComponent(0.94),
                             toColor: UIColor.set(red: 163, green: 40, blue: 40).withAlphaComponent(0.94))
@@ -139,6 +132,55 @@ class DetailSubVC: UIViewController {
             setGradientView(fromColor: UIColor.set(red: 101, green: 172, blue: 172).withAlphaComponent(0.94),
                             toColor: UIColor.set(red: 29, green: 119, blue: 182).withAlphaComponent(0.94))
         }
+    }
+    
+    /// 更新倒數時間
+    func updateReciprocalTime() {
+        let dateFormatter = DateFormatter()     // 建立日期格式化器
+        let calendar = Calendar.current         // 取得本地日曆
+
+        dateFormatter.dateFormat = "YYYY.MM.dd HH:mm:ss"    // 時間格式
+        let vivitDate = dateFormatter.date(from: visitTime) // 自訂 String 時間格式需與上一行吻合
+        let visitDateHourStr = calendar.component(.hour, from: vivitDate!)  // 提取 hour
+        let visitDateMinuteStr = calendar.component(.minute, from: vivitDate!)  // 提取 minute
+        
+        // 與現在時間時間相差
+        let dateBetween = Date().daysBetweenDate(toDate: vivitDate!)
+        var reciprocalTime = dateBetween.day
+        var reciprocalUnit = "天"
+        if dateBetween.day == 0 {
+            reciprocalTime = dateBetween.hour
+            reciprocalUnit  = "小時"
+            
+            if dateBetween.hour == 0 {
+                reciprocalTime = dateBetween.minute
+                reciprocalUnit  = "分鐘"
+                
+                if reciprocalTime <= 10 {
+                    setGradientView(fromColor: UIColor.set(red: 201, green: 60, blue: 60).withAlphaComponent(0.94),
+                                    toColor: UIColor.set(red: 163, green: 40, blue: 40).withAlphaComponent(0.94))
+                    largeTitleStr = "請儘快抵達 以免過號"
+                } else {
+                    largeTitleStr = "以下為您專屬預約資訊"
+                }
+            }
+        }
+        print("\(dateBetween.day)天", "\(dateBetween.hour)小時", "\(dateBetween.minute)分")
+        
+        timeLabel.attributedText = .setAttributedString(string: "\(visitDateHourStr):\(visitDateMinuteStr)", wordSpace: .onePNine)
+        timeUnitsLabel.attributedText = .setAttributedString(string: reciprocalUnit, wordSpace: .onePNine)
+        
+        let formatStr = String(format: "%02ld", reciprocalTime)
+        switch reciprocalTime {
+        case 0:
+            reciprocalDigatalLabel.attributedText = .setAttributedString(string: "\(formatStr)", wordSpace: .fivePZero)
+            reciprocalDigatalLabel.textColor = .lightGray
+        case 1 ... 9:
+            reciprocalDigatalLabel.attributedText = .setDiffrentColorAttrStr(string: "\(formatStr)", wordSpace: .fivePZero, color: .lightGray, interval: reciprocalTime)
+        default:
+            reciprocalDigatalLabel.attributedText = .setAttributedString(string: "\(formatStr)", wordSpace: .fivePZero)
+        }
+        
     }
 
     // 漸層
@@ -148,7 +190,7 @@ class DetailSubVC: UIViewController {
     }
     
     @IBAction func onCancelBtnClick(_ sender: Any) {
-        if waitNumberNumber > 0 {
+        if waitNumber > 0 {
             originalDigitalNumber += 1
         }
         setUI()

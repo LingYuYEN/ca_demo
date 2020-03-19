@@ -11,8 +11,11 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+//    let apiKey = "AIzaSyCSY6N-kWwxSHkV60nm2NsPM4yuhoKSmdo"
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+//        GMSServices.provideAPIKey(apiKey)
         return true
     }
 

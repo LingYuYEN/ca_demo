@@ -132,11 +132,17 @@
                                 <rect key="frame" x="175.66666666666666" y="646" width="63" height="63"/>
                                 <color key="tintColor" red="0.79421472549438477" green="0.19885852932929993" blue="0.32145595550537109" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="map"/>
+                                <connections>
+                                    <action selector="onMapBtnClick:" destination="Epo-kL-rn2" eventType="touchUpInside" id="aPS-FK-wWU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMA-ll-eSu">
                                 <rect key="frame" x="304.33333333333331" y="646" width="63" height="63"/>
                                 <color key="tintColor" red="0.98556739091873169" green="0.80389171838760376" blue="0.33410733938217163" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="date"/>
+                                <connections>
+                                    <action selector="onCalendarBtnClick:" destination="Epo-kL-rn2" eventType="touchUpInside" id="sXv-l7-eao"/>
+                                </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-TX-7Qc">
                                 <rect key="frame" x="171.66666666666666" y="601" width="71" height="37"/>
@@ -168,6 +174,7 @@
                     <connections>
                         <outlet property="callBtn" destination="aXl-lK-aes" id="Zuf-Uk-fiV"/>
                         <outlet property="containerView" destination="a9d-jJ-osJ" id="Uok-mr-vE5"/>
+                        <outlet property="mapBtn" destination="dcX-TU-3dM" id="Lvl-ze-2O9"/>
                         <outlet property="pageControl" destination="VfX-TX-7Qc" id="MyD-3E-B2y"/>
                     </connections>
                 </viewController>
