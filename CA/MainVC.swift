@@ -34,7 +34,7 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         
         addressCoordinator = "22.6885991,120.3172083"
-        visitTime = "2020.03.19 17:30:00"
+        visitTime = "2020.03.20 22:30:00"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,11 +46,12 @@ class MainVC: UIViewController {
     }
     
     
-    @IBAction func callBtnClick(_ sender: Any) {
+    @IBAction func onCallBtnClick(_ sender: Any) {
         makePhoneCall(phoneNumber: "0926004286")
     }
     @IBAction func onMapBtnClick(_ sender: Any) {
-        getMapAlert()
+        guard let addressCoordinator = addressCoordinator else { return }
+        getMapAlert(address: addressCoordinator)
     }
     @IBAction func onCalendarBtnClick(_ sender: Any) {
         let alerController = UIAlertController(title: "加到行事曆", message: "是否將預約時間加入行事曆？", preferredStyle: .alert)
@@ -66,10 +67,43 @@ class MainVC: UIViewController {
         
     }
     
+    /// 打電話
+    func makePhoneCall(phoneNumber: String) {
+        if let phoneURL = NSURL(string: ("tel://" + phoneNumber)) {
+            UIApplication.shared.open(phoneURL as URL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    /// 顯示提示框，並前往google maps
+    func getMapAlert(address: String) {
+        
+        
+        
+        // 建立提示框
+        let alertController = UIAlertController(title: "前往 Google Maps", message: "確定後將離開此 APP", preferredStyle: .alert)
+        
+        // 建立確定動作
+        let okAction = UIAlertAction(title: "確定", style: .default) { _ in
+            // 使用 open(_:options:completionHandler:) 來開啟 google maps 的 URL Scheme
+            let urlStr = "https://www.google.com/maps/search/?api=1&query=\(address)"
+            guard let url = URL(string: urlStr) else { return }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+        
+        alertController.addAction(okAction)
+        
+        // 建立取消動作
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    /// 顯示提示框，並新增排程制行事曆
     func creatCalendarAction() {
         guard let visitTime = visitTime else { return }
         let dateFormatter = DateFormatter()     // 建立日期格式化器
-
+        
         dateFormatter.dateFormat = "YYYY.MM.dd HH:mm:ss"    // 時間格式
         guard let visitDate = dateFormatter.date(from: visitTime) else { return }// 自訂 String
         
@@ -96,6 +130,7 @@ class MainVC: UIViewController {
         }
     }
     
+    // 顯示提示框是否新增行事曆
     func getCalendarAlert() {
         // 建立提示框
         let alertController = UIAlertController(title: "新增成功", message: "請按確定檢視行事曆，或按取消回到 APP", preferredStyle: .alert)
@@ -115,37 +150,9 @@ class MainVC: UIViewController {
         
     }
     
-    /// 顯示提示框，並前往google maps
-    func getMapAlert() {
-        
-        guard let addressCoordinator = addressCoordinator else { return }
-        
-        // 建立提示框
-        let alertController = UIAlertController(title: "前往 Google Maps", message: "確定後將離開此 APP", preferredStyle: .alert)
-        
-        // 建立確定動作
-        let okAction = UIAlertAction(title: "確定", style: .default) { _ in
-            // 使用 open(_:options:completionHandler:) 來開啟 google maps 的 URL Scheme
-            let urlStr = "https://www.google.com/maps/search/?api=1&query=\(addressCoordinator)"
-            guard let url = URL(string: urlStr) else { return }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-        
-        alertController.addAction(okAction)
-        
-        // 建立取消動作
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
     
-    // 打電話
-    func makePhoneCall(phoneNumber: String) {
-        if let phoneURL = NSURL(string: ("tel://" + phoneNumber)) {
-            UIApplication.shared.open(phoneURL as URL, options: [:], completionHandler: nil)
-        }
-    }
+    
+    
 }
 
 extension MainVC: PageVCDelegate {

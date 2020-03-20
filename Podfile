@@ -6,6 +6,6 @@ target 'CA' do
   use_frameworks!
 
   # Pods for CA
-  pod 'GoogleMaps'
-  pod 'GooglePlaces'
+  pod 'Firebase'
+  pod 'Firebase/Database'
 end

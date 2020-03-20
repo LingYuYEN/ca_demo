@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vTX-1q-dUC">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +22,7 @@
         <!--Launch ScreenVC-->
         <scene sceneID="sUU-IS-McS">
             <objects>
-                <viewController id="vTX-1q-dUC" customClass="LaunchScreenVC" customModule="CA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchScreenVC" id="vTX-1q-dUC" customClass="LaunchScreenVC" customModule="CA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Id5-gd-zJ6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,11 +126,14 @@
                                 <color key="tintColor" red="0.39799803495407104" green="0.90106374025344849" blue="0.56512302160263062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="call"/>
                                 <connections>
-                                    <action selector="callBtnClick:" destination="Epo-kL-rn2" eventType="touchUpInside" id="gQh-nA-ZOy"/>
+                                    <action selector="onCallBtnClick:" destination="Epo-kL-rn2" eventType="touchUpInside" id="gQh-nA-ZOy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcX-TU-3dM">
                                 <rect key="frame" x="175.66666666666666" y="646" width="63" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dcX-TU-3dM" secondAttribute="height" id="vVA-bA-wpW"/>
+                                </constraints>
                                 <color key="tintColor" red="0.79421472549438477" green="0.19885852932929993" blue="0.32145595550537109" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="map"/>
                                 <connections>
@@ -145,7 +149,7 @@
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-TX-7Qc">
-                                <rect key="frame" x="171.66666666666666" y="601" width="71" height="37"/>
+                                <rect key="frame" x="171.66666666666666" y="583.33333333333337" width="71" height="37"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -153,9 +157,8 @@
                             <constraint firstItem="bMA-ll-eSu" firstAttribute="trailing" secondItem="wOG-sc-e47" secondAttribute="centerX" multiplier="367.3:207" id="3PT-sa-tr8"/>
                             <constraint firstItem="aXl-lK-aes" firstAttribute="width" secondItem="dcX-TU-3dM" secondAttribute="width" id="86P-WT-fls"/>
                             <constraint firstItem="dcX-TU-3dM" firstAttribute="top" secondItem="wOG-sc-e47" secondAttribute="centerY" multiplier="646:368" id="9Eg-Di-X7b"/>
-                            <constraint firstItem="VfX-TX-7Qc" firstAttribute="top" secondItem="wOG-sc-e47" secondAttribute="centerY" multiplier="601:368" id="9wA-Sg-zbQ"/>
+                            <constraint firstItem="VfX-TX-7Qc" firstAttribute="top" secondItem="wOG-sc-e47" secondAttribute="centerY" multiplier="583.33:368" id="9wA-Sg-zbQ"/>
                             <constraint firstItem="dcX-TU-3dM" firstAttribute="centerX" secondItem="wOG-sc-e47" secondAttribute="centerX" id="FLc-c0-1wf"/>
-                            <constraint firstItem="dcX-TU-3dM" firstAttribute="height" secondItem="a9d-jJ-osJ" secondAttribute="height" multiplier="0.0855978" id="K1M-rN-jsu"/>
                             <constraint firstItem="a9d-jJ-osJ" firstAttribute="leading" secondItem="aKr-qc-1hP" secondAttribute="leading" id="KXy-46-Kis"/>
                             <constraint firstItem="dcX-TU-3dM" firstAttribute="width" secondItem="a9d-jJ-osJ" secondAttribute="width" multiplier="0.152174" id="Pza-zj-xK3"/>
                             <constraint firstItem="aXl-lK-aes" firstAttribute="leading" secondItem="wOG-sc-e47" secondAttribute="centerX" multiplier="46.7:207" id="Vho-au-hDi"/>
@@ -165,7 +168,7 @@
                             <constraint firstItem="aXl-lK-aes" firstAttribute="bottom" secondItem="dcX-TU-3dM" secondAttribute="bottom" id="fLM-b0-dXA"/>
                             <constraint firstItem="bMA-ll-eSu" firstAttribute="width" secondItem="dcX-TU-3dM" secondAttribute="width" id="i3q-qB-bvA"/>
                             <constraint firstItem="aXl-lK-aes" firstAttribute="height" secondItem="dcX-TU-3dM" secondAttribute="height" id="xya-V1-0c9"/>
-                            <constraint firstItem="a9d-jJ-osJ" firstAttribute="bottom" secondItem="aKr-qc-1hP" secondAttribute="bottom" id="ySF-0E-6FN"/>
+                            <constraint firstItem="a9d-jJ-osJ" firstAttribute="bottom" secondItem="wOG-sc-e47" secondAttribute="bottom" id="ySF-0E-6FN"/>
                             <constraint firstItem="VfX-TX-7Qc" firstAttribute="centerX" secondItem="wOG-sc-e47" secondAttribute="centerX" id="zSM-yg-FNp"/>
                             <constraint firstItem="a9d-jJ-osJ" firstAttribute="top" secondItem="wOG-sc-e47" secondAttribute="top" id="zjD-lu-7bt"/>
                         </constraints>
@@ -185,7 +188,7 @@
         <!--Page View Controller-->
         <scene sceneID="FxO-V6-7xg">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="ZcD-Lt-7ky" customClass="PageViewController" customModule="CA" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ZcD-Lt-7ky" customClass="PageViewController" customModule="CA" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="58b-cE-lYI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2557.971014492754" y="137.94642857142856"/>

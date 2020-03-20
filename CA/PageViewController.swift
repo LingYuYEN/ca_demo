@@ -45,7 +45,7 @@ class PageViewController: UIPageViewController {
         self.viewControllerArr.append(DetailSubVC(nibName: "DetailSubVC", bundle: nil))
         self.viewControllerArr.append(DetailSubVC(nibName: "DetailSubVC", bundle: nil))
         self.viewControllerArr.append(DetailSubVC(nibName: "DetailSubVC", bundle: nil))
-        self.viewControllerArr.append(DetailSubSecVC(nibName: "DetailSubSecVC", bundle: nil))
+//        self.viewControllerArr.append(DetailSubSecVC(nibName: "DetailSubSecVC", bundle: nil))
         
         self.dataSource = self
         self.delegate = self

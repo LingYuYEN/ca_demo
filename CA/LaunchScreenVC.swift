@@ -19,9 +19,10 @@ class LaunchScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let seconds = 1.0
+        
+        let seconds = 1.0 // 延遲 1 秒後才換頁
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.view.alpha = 0
             }) { (finish) in
                 if let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") {
